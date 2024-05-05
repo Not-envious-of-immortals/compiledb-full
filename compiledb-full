@@ -141,8 +141,12 @@ def main(root):
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage: ./compiledb-full <root_directory>")
+        print("Usage: ./compiledb-full <root_directory> [excluded_directories...]")
         sys.exit(1)
 
     root_dir = os.path.abspath(sys.argv[1])
+    args = sys.argv[2:]
+    excluded_dirs = [os.path.abspath(arg) for arg in args]
+
+    hated_dirs += excluded_dirs
     main(root_dir)
